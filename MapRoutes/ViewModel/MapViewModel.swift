@@ -77,7 +77,7 @@ class MapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
         mapView.addAnnotation(pointAnnotation)
 
         // Moving map to that location
-        let coordinateRegion = MKCoordinateRegion(center: coordinate, latitudinalMeters: 10000, longitudinalMeters: 10000)
+        let coordinateRegion = MKCoordinateRegion(center: coordinate, latitudinalMeters: 50000, longitudinalMeters: 50000)
         mapView.setRegion(coordinateRegion, animated: true)
         mapView.setVisibleMapRect(mapView.visibleMapRect, animated: true)
     }
@@ -108,7 +108,7 @@ class MapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
      // getting user region
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let location = locations.last else { return}
-        self.region  =  MKCoordinateRegion(center: location.coordinate, latitudinalMeters: 10000, longitudinalMeters: 10000)
+        self.region  =  MKCoordinateRegion(center: location.coordinate, latitudinalMeters: 50000, longitudinalMeters: 50000)
 
 
         // updating map
