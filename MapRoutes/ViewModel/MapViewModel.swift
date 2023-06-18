@@ -63,6 +63,21 @@ class MapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
         }
     }
 
+    // Pick Search Result...
+    func selectPlace(place: Place) {
+        searchText = ""
+        guard let coordinate = place.place.location?.coordinate else { return }
+        let pointAnnotation = MKPointAnnotation()
+        pointAnnotation.coordinate = coordinate
+        pointAnnotation.title = place.place.name ?? "No Name"
+
+        // removing all old ones
+        mapView.removeAnnotations(mapView.annotations)
+
+        mapView.addAnnotation(pointAnnotation)
+    }
+
+
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         // checking permissions ...
 
