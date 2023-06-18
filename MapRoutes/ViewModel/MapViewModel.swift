@@ -75,6 +75,11 @@ class MapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
         mapView.removeAnnotations(mapView.annotations)
 
         mapView.addAnnotation(pointAnnotation)
+
+        // Moving map to that location
+        let coordinateRegion = MKCoordinateRegion(center: coordinate, latitudinalMeters: 10000, longitudinalMeters: 10000)
+        mapView.setRegion(coordinateRegion, animated: true)
+        mapView.setVisibleMapRect(mapView.visibleMapRect, animated: true)
     }
 
 
@@ -103,7 +108,7 @@ class MapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
      // getting user region
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let location = locations.last else { return}
-        self.region  =  MKCoordinateRegion(center: CLLocationCoordinate2D(latitude:   -1.3989781233418408, longitude: 36.75295561256956), latitudinalMeters: 1000, longitudinalMeters: 1000)
+        self.region  =  MKCoordinateRegion(center: location.coordinate, latitudinalMeters: 10000, longitudinalMeters: 10000)
 
 
         // updating map
