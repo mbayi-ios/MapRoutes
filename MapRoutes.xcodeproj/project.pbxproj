@@ -14,6 +14,7 @@
 		892031792A3EE773001B85F1 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 892031782A3EE773001B85F1 /* Home.swift */; };
 		8920317B2A3EE784001B85F1 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8920317A2A3EE784001B85F1 /* MapView.swift */; };
 		8920317D2A3EE821001B85F1 /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8920317C2A3EE821001B85F1 /* MapViewModel.swift */; };
+		892031812A3EFE67001B85F1 /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = 892031802A3EFE67001B85F1 /* Place.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +26,7 @@
 		892031782A3EE773001B85F1 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 		8920317A2A3EE784001B85F1 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		8920317C2A3EE821001B85F1 /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
+		892031802A3EFE67001B85F1 /* Place.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +59,7 @@
 		892031672A3EE6C2001B85F1 /* MapRoutes */ = {
 			isa = PBXGroup;
 			children = (
+				8920317F2A3EFE5D001B85F1 /* Model */,
 				892031772A3EE75A001B85F1 /* ViewModel */,
 				892031762A3EE754001B85F1 /* View */,
 				892031682A3EE6C2001B85F1 /* MapRoutesApp.swift */,
@@ -90,6 +93,14 @@
 				8920317C2A3EE821001B85F1 /* MapViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		8920317F2A3EFE5D001B85F1 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				892031802A3EFE67001B85F1 /* Place.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -165,6 +176,7 @@
 				8920316B2A3EE6C2001B85F1 /* ContentView.swift in Sources */,
 				8920317D2A3EE821001B85F1 /* MapViewModel.swift in Sources */,
 				8920317B2A3EE784001B85F1 /* MapView.swift in Sources */,
+				892031812A3EFE67001B85F1 /* Place.swift in Sources */,
 				892031792A3EE773001B85F1 /* Home.swift in Sources */,
 				892031692A3EE6C2001B85F1 /* MapRoutesApp.swift in Sources */,
 			);

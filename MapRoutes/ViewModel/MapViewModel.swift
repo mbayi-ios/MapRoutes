@@ -21,6 +21,9 @@ class MapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     //Map type
     @Published var mapType: MKMapType = .standard
 
+    // search text
+    @Published var searchText = ""
+    
     // updating map type.. 
     func updateMapType() {
         if mapType == .standard {
@@ -33,12 +36,22 @@ class MapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     }
 
     // focus Location
-
     func focusLocation() {
         guard let _ = region else { return }
 
         mapView.setRegion(region, animated: true)
         mapView.setVisibleMapRect(mapView.visibleMapRect, animated: true)
+    }
+
+    // search places...
+    func searchQuery() {
+        let request = MKLocalSearch.Request()
+        request.naturalLanguageQuery = searchText
+
+        // fetch...
+        MKLocalSearch(request: request).start { (response, _) in
+            guard let result = response else { return }
+        }
     }
 
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {

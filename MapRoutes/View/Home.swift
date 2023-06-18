@@ -12,7 +12,19 @@ struct Home: View {
                 .ignoresSafeArea(.all, edges: .all)
 
             VStack {
+                HStack {
+                    Image(systemName: "magnifyingglass")
+                        .foregroundColor(.gray)
+                    TextField("Search", text: $mapData.searchText)
+                        .colorScheme(.light)
+                }
+                .padding(.vertical, 10)
+                .padding(.horizontal)
+                .background(Color.white)
+                .padding()
+
                 Spacer()
+
                 VStack {
                     Button(action: mapData.focusLocation, label: {
                         Image(systemName: "location.fill")
@@ -42,6 +54,20 @@ struct Home: View {
             Alert(title: Text("Permission Denied"), message: Text("Please Enable Permission in App Settings"), dismissButton: .default(Text("Goto Settings"), action: {
                 UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
             }))
+        })
+        .preferredColorScheme(.dark)
+        .onChange(of: mapData.searchText, perform: {value in
+            // search places
+
+            // you canuse your own delaty time to avoid contiunous search request
+            let delay = 0.3
+
+            DispatchQueue.main.asyncAfter(deadline: .now() + delay){
+                if value == mapData.searchText {
+                    self.mapData.searchQuery()
+                }
+            }
+
         })
     }
 }
