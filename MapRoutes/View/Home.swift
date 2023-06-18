@@ -79,7 +79,7 @@ struct Home: View {
                 UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
             }))
         })
-        //.preferredColorScheme(.dark)
+        .preferredColorScheme(.dark)
         .onChange(of: mapData.searchText, perform: {value in
             // search places
 
