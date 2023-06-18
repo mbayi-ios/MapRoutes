@@ -10,6 +10,29 @@ struct Home: View {
             MapView()
                 .environmentObject(mapData)
                 .ignoresSafeArea(.all, edges: .all)
+
+            VStack {
+                Spacer()
+                VStack {
+                    Button(action: mapData.focusLocation, label: {
+                        Image(systemName: "location.fill")
+                            .font(.title2)
+                            .padding(10)
+                            .background(Color.primary)
+                            .clipShape(Circle())
+                    })
+
+                    Button(action: mapData.updateMapType, label: {
+                        Image(systemName: mapData.mapType == .standard ? "network" : "map")
+                            .font(.title2)
+                            .padding(10)
+                            .background(Color.primary)
+                            .clipShape(Circle())
+                    })
+
+                }
+                .frame(maxWidth: .infinity, alignment: .trailing )
+            }
         }
         .onAppear(perform: {
             locationManager.delegate = mapData

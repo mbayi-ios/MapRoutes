@@ -13,9 +13,33 @@ import CoreLocation
 class MapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     @Published var mapView = MKMapView()
 
+    //
     @Published var region: MKCoordinateRegion!
 
     @Published var permissionDenied = false
+
+    //Map type
+    @Published var mapType: MKMapType = .standard
+
+    // updating map type.. 
+    func updateMapType() {
+        if mapType == .standard {
+            mapType = .hybrid
+            mapView.mapType = mapType
+        } else {
+            mapType = .standard
+            mapView.mapType = mapType
+        }
+    }
+
+    // focus Location
+
+    func focusLocation() {
+        guard let _ = region else { return }
+
+        mapView.setRegion(region, animated: true)
+        mapView.setVisibleMapRect(mapView.visibleMapRect, animated: true)
+    }
 
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         // checking permissions ...
@@ -27,6 +51,9 @@ class MapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
         case .notDetermined:
             // requesting...
             manager.requestWhenInUseAuthorization()
+
+        case .authorizedWhenInUse:
+            manager.requestLocation()
         default:
             ()
         }
@@ -34,5 +61,18 @@ class MapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
 
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print(error.localizedDescription)
+    }
+
+     // getting user region
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let location = locations.last else { return}
+        self.region  =  MKCoordinateRegion(center: CLLocationCoordinate2D(latitude:   -1.3989781233418408, longitude: 36.75295561256956), latitudinalMeters: 1000, longitudinalMeters: 1000)
+
+
+        // updating map
+        self.mapView.setRegion(self.region, animated: true)
+
+        // smooth animations
+        self.mapView.setVisibleMapRect(self.mapView.visibleMapRect, animated: true)
     }
 }
